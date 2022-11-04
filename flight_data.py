@@ -4,22 +4,17 @@ from sqlalchemy import create_engine
 from snowflake.sqlalchemy import URL
 import streamlit as st
 import altair as alt
-import json
-
-
-credentials = {}
-with open('credentials.json') as f:
-    credentials = json.loads(f.read())
+import os
 
 # Creating the pattern for the sqlalchemy engine to connect to snowflake database
 # SQLAlchemy uses the connection string - 'snowflake://<user_login_name>:<password>@<account_identifier>/<database_name>/<schema_name>?warehouse=<warehouse_name>&role=<role_name>'
 url = URL(
-                user = credentials['user'],
-                password = credentials['password'],
-                account= credentials['account'],
-                warehouse= credentials['warehouse'],
-                database=credentials['database'],
-                schema= credentials['schema']
+                user = os.getenv('USER'),
+                password = os.getenv('PASSWORD'),
+                account= os.getenv('ACCOUNT'),
+                warehouse= os.getenv('WAREHOUSE'),
+                database=os.getenv('DATABASE'),
+                schema= os.getenv('SCHEMA')
                 )  
   
 
