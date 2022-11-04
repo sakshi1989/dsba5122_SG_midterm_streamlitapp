@@ -140,7 +140,7 @@ st.header("Distance & Duration Information (Index as flight number")
 df_dt_dur = df_data[(df_data['airline_code'] == airline_code) & (df_data['flight_date'] == date) \
                         & (df_data['departure_port_code'] == dep_code) & (df_data['arrival_port_code'] == air_code)]\
                             [['distance','elapsed_time','flight_number']].copy()
-df_dt_dur.rename(columns = {'duration' : 'duration(miles)' , 'elapsed_time':'duration(hhmm)'}, inplace=True) 
+df_dt_dur.rename(columns = {'distance' : 'distance(miles)' , 'elapsed_time':'duration(hhmm)'}, inplace=True) 
 df_dt_dur.set_index('flight_number', inplace=True)
 st.write(df_dt_dur)                           
 
